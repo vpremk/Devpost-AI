@@ -24,9 +24,10 @@ function RetrospectiveSpeech({
   const [currentTime, setCurrentTime] = useState('00:00');
 
   const utteranceRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
-  const audioContextRef = useRef(null);
-  const streamRef = useRef(null);
+  // mediaRecorderRef and streamRef reserved for future Web Audio API integration
+  // const mediaRecorderRef = useRef(null);
+  // const audioContextRef = useRef(null);
+  // const streamRef = useRef(null);
 
   // Populate available voices
   useEffect(() => {
