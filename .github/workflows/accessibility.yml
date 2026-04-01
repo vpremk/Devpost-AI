@@ -80,7 +80,7 @@ jobs:
           CI: true
 
       - name: Check bundle size
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bundle-size
           path: build/
