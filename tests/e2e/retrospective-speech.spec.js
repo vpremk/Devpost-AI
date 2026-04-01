@@ -2,6 +2,37 @@ import { test, expect } from '@playwright/test';
 
 test.describe('RetrospectiveSpeech Component', () => {
   test.beforeEach(async ({ page }) => {
+    // Mock speechSynthesis before page load — headless CI doesn't support Web Speech API
+    await page.addInitScript(() => {
+      const mockVoices = [
+        { name: 'Test Voice 1', lang: 'en-US', voiceURI: 'test-1', localService: true, default: true },
+        { name: 'Test Voice 2', lang: 'en-GB', voiceURI: 'test-2', localService: false, default: false },
+      ];
+
+      window.speechSynthesis = {
+        speaking: false,
+        paused: false,
+        pending: false,
+        onvoiceschanged: null,
+        getVoices: function () { return mockVoices; },
+        speak: function (utterance) {
+          this.speaking = true;
+          setTimeout(function () {
+            if (utterance.onstart) utterance.onstart();
+          }, 50);
+        },
+        pause: function () { this.paused = true; },
+        resume: function () { this.paused = false; },
+        cancel: function () { this.speaking = false; this.paused = false; },
+      };
+
+      setTimeout(function () {
+        if (window.speechSynthesis.onvoiceschanged) {
+          window.speechSynthesis.onvoiceschanged();
+        }
+      }, 0);
+    });
+
     await page.goto('/');
     // Wait for component to load
     await page.waitForSelector('[role="region"][aria-label="Text-to-speech controls"]', { timeout: 5000 });

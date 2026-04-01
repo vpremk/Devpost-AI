@@ -173,7 +173,7 @@
 
 @media (max-width: 600px) {
   .retrospective-speech {
-    margin: 10px;
+    margin: 0;
     padding: 15px;
   }
 
