@@ -14,10 +14,15 @@ function RetrospectiveSpeech({
   onStop, 
   onError 
 }) {
+  const getSavedPrefs = () => {
+    try { return JSON.parse(localStorage.getItem('retrospectiveSpeech') || '{}'); }
+    catch { return {}; }
+  };
+
   const [voices, setVoices] = useState([]);
-  const [selectedVoiceIndex, setSelectedVoiceIndex] = useState(0);
-  const [rate, setRate] = useState(1.0);
-  const [pitch, setPitch] = useState(1.0);
+  const [selectedVoiceIndex, setSelectedVoiceIndex] = useState(() => getSavedPrefs().voiceIndex ?? 0);
+  const [rate, setRate] = useState(() => getSavedPrefs().rate ?? 1.0);
+  const [pitch, setPitch] = useState(() => getSavedPrefs().pitch ?? 1.0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [status, setStatus] = useState('Ready');
@@ -167,6 +172,16 @@ function RetrospectiveSpeech({
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === ' ' || e.code === 'Space') {
+      e.preventDefault();
+      handlePlay();
+    } else if (e.key === 's' || e.key === 'S') {
+      e.preventDefault();
+      handleStop();
+    }
+  };
+
   const playButtonLabel = isPlaying && !isPaused ? 'Pause' : isPlaying && isPaused ? 'Resume' : 'Play';
 
   return (
@@ -186,7 +201,6 @@ function RetrospectiveSpeech({
           onClick={handleStop}
           aria-label="Stop"
           title="Stop (S)"
-          disabled={!isPlaying}
         >
           ⏹️ Stop
         </button>
@@ -255,11 +269,11 @@ function RetrospectiveSpeech({
         </div>
       </div>
 
-      <div className="status" aria-live="polite" aria-atomic="true">
+      <div className="status" role="region" aria-live="polite" aria-atomic="true">
         <span>{status}</span> <span className="time">{currentTime}</span>
       </div>
 
-      <div className="text-display">
+      <div className="text-display" tabIndex={0} onKeyDown={handleKeyDown}>
         <p>{text}</p>
       </div>
     </div>
