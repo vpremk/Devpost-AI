@@ -24,9 +24,9 @@ function RetrospectiveSpeech({
   const [currentTime, setCurrentTime] = useState('00:00');
 
   const utteranceRef = useRef(null);
+  const audioContextRef = useRef(null);
   // mediaRecorderRef and streamRef reserved for future Web Audio API integration
   // const mediaRecorderRef = useRef(null);
-  // const audioContextRef = useRef(null);
   // const streamRef = useRef(null);
 
   // Populate available voices
@@ -128,7 +128,7 @@ function RetrospectiveSpeech({
       }
 
       const ctx = audioContextRef.current;
-      const dest = ctx.createMediaStreamDestination();
+      // const dest = ctx.createMediaStreamDestination(); // Reserved for future Web Audio API integration
 
       // Attempt to route speechSynthesis to MediaStream (limited browser support)
       // For MVP, fallback to server or simple download via blob
