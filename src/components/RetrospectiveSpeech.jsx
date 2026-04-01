@@ -127,7 +127,7 @@ function RetrospectiveSpeech({
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
       }
 
-      const ctx = audioContextRef.current;
+      // const ctx = audioContextRef.current; // Reserved for future Web Audio API integration
       // const dest = ctx.createMediaStreamDestination(); // Reserved for future Web Audio API integration
 
       // Attempt to route speechSynthesis to MediaStream (limited browser support)
