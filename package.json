@@ -1,0 +1,59 @@
+{
+  "name": "devpost-ai-retrospective",
+  "version": "1.0.0",
+  "description": "Interview retrospective platform with speech-to-notes feature",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:bdd": "playwright test",
+    "test:bdd:ui": "playwright test --ui",
+    "test:bdd:debug": "playwright test --debug",
+    "eject": "react-scripts eject",
+    "backend": "node backend/server.js",
+    "backend:dev": "nodemon backend/server.js",
+    "start:all": "concurrently \"npm run backend\" \"npm start\"",
+    "ci:test": "npm run build && npm run test:bdd"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1",
+    "@playwright/test": "^1.40.0",
+    "@cucumber/cucumber": "^10.0.0"
+  },
+  "optionalDependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.10.0",
+    "dotenv": "^16.3.1",
+    "@aws-sdk/client-polly": "^3.400.0",
+    "@google-cloud/text-to-speech": "^4.5.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

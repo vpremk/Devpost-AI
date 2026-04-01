@@ -1,0 +1,192 @@
+/* RetrospectiveSpeech Component Styles */
+
+.retrospective-speech {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.retrospective-speech .controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.retrospective-speech .btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.retrospective-speech .btn:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.retrospective-speech .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.retrospective-speech .btn-primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.retrospective-speech .btn-primary:hover:not(:disabled) {
+  background-color: #3a7bc8;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.retrospective-speech .btn-secondary {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.retrospective-speech .btn-secondary:hover:not(:disabled) {
+  background-color: #d0d0d0;
+}
+
+.retrospective-speech .settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.retrospective-speech .setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.retrospective-speech .setting-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.retrospective-speech .setting-group select,
+.retrospective-speech .setting-group input[type="range"] {
+  padding: 8px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.retrospective-speech .setting-group select:focus,
+.retrospective-speech .setting-group input[type="range"]:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.retrospective-speech .setting-group input[type="range"] {
+  padding: 0;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  border-radius: 3px;
+  outline: none;
+}
+
+.retrospective-speech .setting-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.retrospective-speech .setting-group input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.retrospective-speech .status {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #e8f4f8;
+  border-left: 4px solid #4a90e2;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #333;
+}
+
+.retrospective-speech .status .time {
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.retrospective-speech .text-display {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.retrospective-speech .text-display p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .retrospective-speech .btn,
+  .retrospective-speech .setting-group select,
+  .retrospective-speech .setting-group input[type="range"] {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .retrospective-speech {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .retrospective-speech .controls {
+    flex-direction: column;
+  }
+
+  .retrospective-speech .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .retrospective-speech .settings {
+    grid-template-columns: 1fr;
+  }
+}
